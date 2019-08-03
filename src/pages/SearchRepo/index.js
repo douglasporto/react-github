@@ -5,34 +5,34 @@ import { Link } from 'react-router-dom';
 import api from '../../services/api';
 import Container from '../../components/Container';
 import Header from '../../components/Header';
-import { Form, SubmitButton, UsersList } from './styles';
+import { Form, SubmitButton, List } from './styles';
 
 export default class Main extends Component {
   state = {
-    newUser: '',
-    users: [],
+    newRepo: '',
+    repositories: [],
     loading: false,
     error: false,
   };
 
   componentDidMount() {
-    const users = localStorage.getItem('users');
+    const repositories = localStorage.getItem('repositories');
 
-    if (users) {
-      this.setState({ users: JSON.parse(users) });
+    if (repositories) {
+      this.setState({ repositories: JSON.parse(repositories) });
     }
   }
 
   componentDidUpdate(_, prevState) {
-    const { users } = this.state;
+    const { repositories } = this.state;
 
-    if (prevState.users !== users) {
-      localStorage.setItem('users', JSON.stringify(users));
+    if (prevState.repositories !== repositories) {
+      localStorage.setItem('repositories', JSON.stringify(repositories));
     }
   }
 
   handleInputChange = e => {
-    this.setState({ newUser: e.target.value });
+    this.setState({ newRepo: e.target.value });
   };
 
   handleSubmit = async e => {
@@ -41,29 +41,25 @@ export default class Main extends Component {
     this.setState({ loading: true });
 
     try {
-      const { newUser, users } = this.state;
+      const { newRepo, repositories } = this.state;
 
       // eslint-disable-next-line
-      if (newUser === '') throw 'Você precisa indicar um repositório';
+      if (newRepo === '') throw 'Você precisa indicar um repositório';
 
-      const hasRepo = users.find(r => r.name === newUser);
+      const hasRepo = repositories.find(r => r.name === newRepo);
 
       // eslint-disable-next-line
       if (hasRepo) throw 'Repositório duplicado';
 
-      const response = await api.get(`/users/${newUser}`);
-      console.log(response.data);
+      const response = await api.get(`/repos/${newRepo}`);
 
       const data = {
-        login: response.data.login,
-        name: response.data.name,
-        avatar_url: response.data.avatar_url,
-        html_url: response.data.html_url,
+        name: response.data.full_name,
       };
 
       this.setState({
-        users: [...users, data],
-        newUser: '',
+        repositories: [...repositories, data],
+        newRepo: '',
         loading: false,
         error: false,
       });
@@ -77,21 +73,21 @@ export default class Main extends Component {
   };
 
   render() {
-    const { newUser, loading, users, error } = this.state;
+    const { newRepo, loading, repositories, error } = this.state;
     return (
       <>
         <Header />
         <Container>
           <h1>
             <FaGithubAlt />
-            Users
+            Repositórios
           </h1>
 
           <Form onSubmit={this.handleSubmit} error={error}>
             <input
               type="text"
-              placeholder="Add Users"
-              value={newUser}
+              placeholder="Adicionar repositório"
+              value={newRepo}
               onChange={this.handleInputChange}
             />
 
@@ -103,23 +99,17 @@ export default class Main extends Component {
               )}
             </SubmitButton>
           </Form>
-          <UsersList>
-            {users.map(user => (
-              <li key={user.login}>
-                <img src={user.avatar_url} alt={user.login} />
-                <div>
-                  <strong>
-                    {/* eslint-disable-next-line react/jsx-no-target-blank */}
-                    <a target="_blank" href={user.html_url}>
-                      {user.name}
-                    </a>
-                  </strong>
-                  <p>{user.login}</p>
-                </div>
-                <Link to={`/user/${user.login}`}>Detalhes</Link>
+
+          <List>
+            {repositories.map(repository => (
+              <li key={repository.name}>
+                <span>{repository.name}</span>
+                <Link to={`/repository/${encodeURIComponent(repository.name)}`}>
+                  Detalhes
+                </Link>
               </li>
             ))}
-          </UsersList>
+          </List>
         </Container>
       </>
     );
