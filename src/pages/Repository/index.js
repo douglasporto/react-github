@@ -42,13 +42,13 @@ export default class Repository extends Component {
 
   render() {
     const { loading, repository, issues } = this.state;
-    if (loading) return <Loading>Carregando</Loading>;
+    if (loading) return <Loading>Downloading...</Loading>;
     return (
       <>
         <Header />
         <Container>
           <Owner>
-            <Link to="/">Voltar aos Repositórios</Link>
+            <Link to="/search-repo">Back to repositories</Link>
             <img
               src={repository.owner.avatar_url}
               alt={repository.owner.login}

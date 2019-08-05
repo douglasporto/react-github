@@ -44,15 +44,17 @@ export default class Main extends Component {
       const { newUser, users } = this.state;
 
       // eslint-disable-next-line
-      if (newUser === '') throw 'Você precisa indicar um repositório';
+      if (newUser === '') throw 'You need fill a user';
 
       const hasRepo = users.find(r => r.name === newUser);
 
       // eslint-disable-next-line
-      if (hasRepo) throw 'Repositório duplicado';
+      if (hasRepo) throw 'User already add.';
 
       const response = await api.get(`/users/${newUser}`);
-      console.log(response.data);
+
+      // eslint-disable-next-line
+      if (response.status !== 200) throw 'Unexpected error.';
 
       const data = {
         login: response.data.login,
@@ -116,7 +118,7 @@ export default class Main extends Component {
                   </strong>
                   <p>{user.login}</p>
                 </div>
-                <Link to={`/user/${user.login}`}>Detalhes</Link>
+                <Link to={`/user/${user.login}`}>Details</Link>
               </li>
             ))}
           </UsersList>

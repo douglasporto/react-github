@@ -44,14 +44,17 @@ export default class Main extends Component {
       const { newRepo, repositories } = this.state;
 
       // eslint-disable-next-line
-      if (newRepo === '') throw 'Você precisa indicar um repositório';
+      if (newRepo === '') throw 'You need fill a repository';
 
       const hasRepo = repositories.find(r => r.name === newRepo);
 
       // eslint-disable-next-line
-      if (hasRepo) throw 'Repositório duplicado';
+      if (hasRepo) throw 'Repository already add';
 
       const response = await api.get(`/repos/${newRepo}`);
+
+      // eslint-disable-next-line
+      if (response.status !== 200) throw 'Unexpected error.';
 
       const data = {
         name: response.data.full_name,
@@ -80,13 +83,13 @@ export default class Main extends Component {
         <Container>
           <h1>
             <FaGithubAlt />
-            Repositórios
+            Repositories
           </h1>
 
           <Form onSubmit={this.handleSubmit} error={error}>
             <input
               type="text"
-              placeholder="Adicionar repositório"
+              placeholder="Add repository"
               value={newRepo}
               onChange={this.handleInputChange}
             />
@@ -105,7 +108,7 @@ export default class Main extends Component {
               <li key={repository.name}>
                 <span>{repository.name}</span>
                 <Link to={`/repository/${encodeURIComponent(repository.name)}`}>
-                  Detalhes
+                  Details
                 </Link>
               </li>
             ))}

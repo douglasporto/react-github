@@ -49,8 +49,6 @@ export default class User extends Component {
         }
       ),
     ]);
-    console.log(user.data);
-    console.log(repos.data);
     this.setState({
       loading: false,
       user: user.data,
@@ -60,13 +58,13 @@ export default class User extends Component {
 
   render() {
     const { loading, user, repos } = this.state;
-    if (loading) return <Loading>Carregando</Loading>;
+    if (loading) return <Loading>Downloading...</Loading>;
     return (
       <>
         <Header />
         <Container>
           <Owner>
-            <Link to="/">Voltar aos Repositórios</Link>
+            <Link to="/">Back to Users</Link>
             <img src={user.avatar_url} alt={user.login} />
             <h1>{user.name}</h1>
             <p>
