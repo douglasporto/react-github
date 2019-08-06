@@ -1,6 +1,7 @@
 {
-  "name": "modulo05",
+  "name": "react-github",
   "version": "0.1.0",
+  "homepage": "./",
   "private": true,
   "dependencies": {
     "axios": "^0.19.0",
@@ -14,7 +15,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
+    "build": "react-scripts build && mv build reactgithub",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
