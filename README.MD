@@ -53,10 +53,10 @@ To clone and run this application, you'll need [Git](https://git-scm.com), [Node
 
 ```bash
 # Clone this repository
-$ git clone https://github.com/lukemorales/gobarber-web
+$ git clone https://github.com/douglasporto/react-github
 
 # Go into the repository
-$ cd gobarber-web
+$ cd react-github
 
 # Install dependencies
 $ yarn install
