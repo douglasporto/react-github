@@ -38,6 +38,8 @@
 
 ## :rocket: Technologies
 
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/4b8f0d43121c4f25a356e31ae1ec72c1)](https://app.codacy.com/app/douglasporto/react-github?utm_source=github.com&utm_medium=referral&utm_content=douglasporto/react-github&utm_campaign=Badge_Grade_Dashboard)
+
 This project was developed at the [RocketSeat GoStack Bootcamp](https://rocketseat.com.br/bootcamp) with the following technologies:
 
 -  [ReactJS](https://reactjs.org/)
