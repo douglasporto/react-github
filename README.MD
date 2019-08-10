@@ -12,7 +12,9 @@
 
   <img alt="GitHub language count" src="https://img.shields.io/github/languages/count/douglasporto/react-github.svg">
 
-  <a href="https://www.codacy.com/app/douglasporto/react-github?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=douglasporto/react-github&amp;utm_campaign=Badge_Grade"><img src="https://api.codacy.com/project/badge/Grade/7e5f576735a2406680f07df42ddce82b"/></a>
+  <a href="https://www.codacy.com/app/douglasporto/uber-react-native?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=douglasporto/uber-react-native&amp;utm_campaign=Badge_Grade">
+    <img alt="Codacy grade" src="https://api.codacy.com/project/badge/Grade/1ca82febe92a47e4a9a03d6621617cc0">
+  </a>
 
   <img alt="Repository size" src="https://img.shields.io/github/repo-size/douglasporto/react-github.svg">
   <a href="https://github.com/douglasporto/react-github/commits/master">
