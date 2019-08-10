@@ -40,7 +40,7 @@
 
 This project was developed at the [RocketSeat GoStack Bootcamp](https://rocketseat.com.br/bootcamp) with the following technologies:
 
-- [ReactJS](https://reactjs.org/)
+  - [ReactJS](https://reactjs.org/)
 - [styled-components](https://www.styled-components.com/)
 - [Axios](https://github.com/axios/axios)
 - [Github-API](https://developer.github.com/v3/)
